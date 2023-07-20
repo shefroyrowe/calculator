@@ -1,55 +1,102 @@
-* {
+html,
+body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    background-color: rgba(59, 0, 136);
+    color: #fbf8f3;
+    box-sizing: border-box;
+    font-size: 1.2rem;
 }
 
-body {
+.wrapper {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    font: 3rem;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     align-content: center;
+    background-color: rgb(0, 204, 102);
     gap: 2rem;
     height: 30rem;
-    width: 25rem;
-    border: 1px solid red;
-    border-radius: 1rem;
+    width: 23rem;
+    border: 1px solid rgb(49, 56, 56);
+    border-radius: 0.6rem;
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.65);
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.65);
 }
 
 .display {
+    border-bottom: none;
+    border-top: none;
+    border-radius: 0.6rem;
+    border-left: 0.021rem solid #313838;
+    margin-left: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5rem;
     width: 17rem;
-    border: 1px solid red;
 }
 
 #row-1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
-    width: 22.9rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgb(49, 56, 56);
+    border-left: none;
+    border-right: none;
+    width: 20.94rem;
     padding-left: 2rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
+    border-radius: 0.6rem;
+    border: 0.021rem solid #313838;
+    border-left: none;
+    border-right: none;
     padding-left: 2rem;
     padding-right: 2rem;
     margin-top: -2rem;
-    width: 20.9rem;
+    width: 19rem;
     height: 20rem;
+}
+
+.row > button,
+#del-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fbf8f3;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    height: 5rem;
+    width: 4.5rem;
+    border-radius: 0.8rem;
+    background-color: rgb(23, 131, 255);
+    box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
+    -webkit-box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
+    -moz-box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
+}
+
+.row > button:hover,
+#del-btn:hover {
+   transform: translateY(-4%);
+}
+
+
+#del-btn {
+    background-color: rgb(255, 69, 0, 0.8);
+    width: 8rem;
 }
