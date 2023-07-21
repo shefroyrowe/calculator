@@ -3,10 +3,11 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: rgba(59, 0, 136);
+    background-color: beige;
     color: #fbf8f3;
     box-sizing: border-box;
     font-size: 1.2rem;
+    overflow: hidden;
 }
 
 .wrapper {
@@ -40,6 +41,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
     height: 5rem;
     width: 17rem;
 }
@@ -99,4 +101,14 @@ body {
 #del-btn {
     background-color: rgb(255, 69, 0, 0.8);
     width: 8rem;
+}
+
+footer {
+    color: #313838;
+    position: absolute;
+    width: 100%;
+    height: 1.4rem;
+    text-align: center;
+    font-size: 1rem;
+    bottom: 0;
 }
