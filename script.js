@@ -22,6 +22,11 @@ function inputDigit(digit){
 }
 
 function inputDecimal(dot){
+    if(calculator.needOperand2 === true){
+        calculator.displayValue = '0.';
+        calculator.needOperand2 = false;
+        return;
+    }
     //if displayValue does not already have a decimal point
     if(!calculator.displayValue.includes(dot)){
         //append a decimal point
@@ -31,7 +36,7 @@ function inputDecimal(dot){
 
 function handleOperator (nextOperator){
    //destructure the properties on the calculator object
-   const { firstOperand, displayValue, operator  } = calculator
+   const { firstOperand, displayValue, operator  } = calculator;
 
    // parseFloat > convert string content of >>
    //> displayValue to a floating point number
@@ -50,7 +55,7 @@ function handleOperator (nextOperator){
   }else if(operator){
     const result = calculate(firstOperand, inputValue, operator);
 
-    calculator.displayValue = String(result);
+    calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
     calculator.firstOperand = result;
   }
 
@@ -97,6 +102,7 @@ const calculatorButtons = document.querySelector('.calculator');
 calculatorButtons.addEventListener('click', (e)=>{
     //get clicked element
     const { target } = e;// is equivalent to (const target = event.target;)
+    const { value } = target;
 
     //validate cliked element (if is button)
     //if not button, exit function
@@ -104,25 +110,27 @@ calculatorButtons.addEventListener('click', (e)=>{
         return;
     }
 
-    if(target.classList.contains('operator')){
-        handleOperator(target.value);
-        updateDisplay();
-        return;
+    switch(value){
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '=':
+            handleOperator(value);
+            break;
+        case '.':
+            inputDecimal(value);
+            break;
+        case 'all-clear':
+            resetCalculator();
+            break;
+        default:
+            //check if the key is an integer
+            if(Number.isInteger(parseFloat(value))){
+                inputDigit(value);
+            }
     }
-
-    if (target.classList.contains('decimal')) {
-        inputDecimal(target.value);
-        updateDisplay();
-        return;
-      }
-
-    if(target.classList.contains('all-clear')){
-        console.log('clear', target.value);
-        return;
-    }
-        inputDigit(target.value);
-        updateDisplay();
-    
-    
+    //update display
+    updateDisplay();
 });
 
