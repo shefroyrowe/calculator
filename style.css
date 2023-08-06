@@ -4,7 +4,7 @@ body {
     padding: 0;
     height: 100%;
     background-color: beige;
-    color: #fbf8f3;
+    color: black;
     box-sizing: border-box;
     font-size: 1.2rem;
     overflow: hidden;
@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    background-color: rgb(0, 204, 102);
+    background-color: rgb(127, 255, 212);
     gap: 2rem;
     height: 30rem;
     width: 23rem;
@@ -65,7 +65,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-radius: 0.6rem;
-    border: 0.021rem solid #313838;
+    border: 1px solid #313838;
     border-left: none;
     border-right: none;
     padding-left: 2rem;
@@ -86,7 +86,7 @@ body {
     height: 5rem;
     width: 4.5rem;
     border-radius: 0.8rem;
-    background-color: rgb(23, 131, 255);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(65,212,207,1) 100%, rgba(0,212,255,1) 100%);;
     box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
     -webkit-box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
     -moz-box-shadow: 0px 0px 4px 1px rgba(255,56,0,0.40);
@@ -99,7 +99,6 @@ body {
 
 
 #del-btn {
-    background-color: rgb(255, 69, 0, 0.8);
     width: 8rem;
 }
 
