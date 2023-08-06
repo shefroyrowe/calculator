@@ -18,11 +18,13 @@ function multi (a,b){
 }
 
 /*---------------------*/
-  //operations variables
+  //operations object
 /*---------------------*/
-const firstNumber = '';
-const secondNumber = '';
-const operator = '';
+const updateDispaly = {
+    firstNumber: '',
+    secondNumber: '',
+    operator: '',
+};
 
 /*--------------------*/
   //calculate variable
@@ -45,3 +47,25 @@ function operate (firstNumber, operator, secondNumber){
             console.log('ERROR');
     }
 }
+
+/*----------------------------------------------*/
+  //show equation expression in secondary display
+/*----------------------------------------------*/
+function evaluateEquation(){
+    const keys = document.getElementsByTagName('button');
+    const secondaryDisplay = document.querySelector('.secondary-display');
+
+     Array.from(keys).forEach(key => {
+        key.addEventListener('click', (e)=>{
+            let value = e.target.value;
+
+            if(value !== 'del' && value !== '='){
+                updateDispaly.firstNumber = updateDispaly.firstNumber += value;
+                secondaryDisplay.textContent = updateDispaly.firstNumber;
+            }
+            
+        });
+    });
+}
+
+evaluateEquation();

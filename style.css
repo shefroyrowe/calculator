@@ -33,18 +33,19 @@ body {
 }
 
 .display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-bottom: none;
     border-top: none;
     border-radius: 0.6rem;
     border-left: 0.021rem solid #313838;
     margin-left: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: 1.5rem;
     height: 5rem;
-    width: 17rem;
+    width: 20rem;
+    overflow: hidden;
 }
 
 .secondary-display {
@@ -109,7 +110,7 @@ body {
 
 
 #del-btn {
-    width: 8rem;
+    min-width: 7rem;
 }
 
 footer {
