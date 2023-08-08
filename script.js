@@ -30,19 +30,19 @@ const updateDisplay = {
 //calculate variable
 /*--------------------*/
 function operate(a, operator, b) {
-    if(operator === '+'){
+    if (operator === '+') {
         return a + b;
     }
 
-    if(operator === '-'){
+    if (operator === '-') {
         return a - b;
     }
 
-    if(operator === '*'){
+    if (operator === '*') {
         return a * b;
     }
 
-    if(operator === '/'){
+    if (operator === '/') {
         return a / b;
     }
 }
@@ -53,7 +53,7 @@ function operate(a, operator, b) {
 function evaluateEquation() {
     const keys = document.getElementsByTagName('button');
     const display = document.querySelector('.secondary-display');
-    const mainDisplay = document.querySelector('.display');
+    const mainDisplay = document.querySelector('.main-display');
 
     Array.from(keys).forEach(key => {
         key.addEventListener('click', (e) => {
@@ -86,13 +86,40 @@ function evaluateEquation() {
             }
 
             //run operate function on input values
+            //append to main display
             if (value === '=' &&
                 isNaN(updateDisplay.firstNumber) === false &&
                 isNaN(updateDisplay.secondNumber) === false &&
                 updateDisplay.operator !== '') {
-                display.textContent = operate(updateDisplay.firstNumber,
+                    display.textContent += '=';
+
+                mainDisplay.textContent = operate(updateDisplay.firstNumber,
                     updateDisplay.operator, updateDisplay.secondNumber);
 
+            }
+
+            //hook up delete button
+            //clear and reset all
+                if(value === 'del'){
+                    updateDisplay.firstNumber = '';
+                    updateDisplay.secondNumber = '';
+                    updateDisplay.operator = '';
+    
+                    display.textContent = 0;
+                    mainDisplay.textContent = '';
+                }
+           
+
+            //evaluate only two operands at a time
+            if(isNaN(mainDisplay.textContent) === false &&
+               key.classList.contains('operater')){
+                
+                updateDisplay.firstNumber = mainDisplay.textContent;
+                console.log(updateDisplay.firstNumber);
+                updateDisplay.operator = value;
+
+                display.textContent = updateDisplay.firstNumber;
+                display.textContent += updateDisplay.operator;
             }
 
         });
