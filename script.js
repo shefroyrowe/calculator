@@ -63,14 +63,20 @@ function evalExpression() {
         key.addEventListener('click', (e) => {
             let { value } = e.target;
 
-            //get and display first operand value
-            if (key.classList.contains('number') &&
-                operator === '') {
+            //get and display first operand value with
+            //or without decimal point included
+            if (value === '.' && 
+                firstNumber.includes('.') === false &&
+                operator === '' ||
+                key.classList.contains('number') &&
+                operator === ''
+            ) {
 
                 //limit operand length to 7 characters
                 if (firstNumber.length < 7) {
                     firstNumber += value;
                 }
+
                 //append to secondary display
                 display.textContent = firstNumber;
             }
@@ -79,16 +85,18 @@ function evalExpression() {
             if (firstNumber !== '' &&
                 secondNumber === '' &&
                 operator === '' &&
-                key.classList.contains('operator')
-            ) {
+                key.classList.contains('operator')) {
 
                 operator = value;
                 //append to value showing in secondary display   
                 display.textContent += ' ' + operator + ' ';
             }
 
-            //get and append second operand value
-            if (firstNumber !== '' &&
+            //get and append second operand value with
+            //or without decimal point included
+            if (value === '.' &&
+                operator !== '' &&
+                secondNumber.includes('.') === false ||
                 key.classList.contains('number') &&
                 operator !== '') {
 
@@ -109,15 +117,15 @@ function evalExpression() {
 
                 //use Number() method to convert strings values to 
                 //intiger inside operate() function
-    
+
                 //store operate() function results in variable (calculate)
                 let calculate = operate(Number(firstNumber),
-                operator, Number(secondNumber));
+                    operator, Number(secondNumber));
 
                 //function to fix floating point numbers to a set amount of decimal points 
                 //n == number to operate on
                 //p == number of values we want after the decimal point
-                const limitPrecision = (n,p) => (0|n*10**p)/10**p;
+                const limitPrecision = (n, p) => (0 | n * 10 ** p) / 10 ** p;
 
                 //run calculate through limitPrecision function and append to main display
                 mainDisplay.textContent = limitPrecision(calculate, 4);
@@ -137,8 +145,4 @@ function evalExpression() {
 }
 
 evalExpression();
-
-//limit input to 7 numbers per operand
-//deal with decimal point, one per operation
-//handle chained expressions
-//eval only two operands at a time
+//handle chained expressions, eval only two operands at a time
