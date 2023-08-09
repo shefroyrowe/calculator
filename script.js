@@ -103,14 +103,24 @@ function evalExpression() {
 
             //run (operate) function on inputed values when the equal('=') butten is pushed
             if (value === '=') {
+
                 //add an equal sign to epression being displayed
                 display.textContent = firstNumber + ' ' + operator + ' ' + secondNumber + ' =';
 
-                //append equation result to main display
-                //use Number() method to convert strings values to intiger
-                //
-                mainDisplay.textContent = operate(Number(firstNumber),
-                    operator, Number(secondNumber));
+                //use Number() method to convert strings values to 
+                //intiger inside operate() function
+    
+                //store operate() function results in variable (calculate)
+                let calculate = operate(Number(firstNumber),
+                operator, Number(secondNumber));
+
+                //function to fix floating point numbers to a set amount of decimal points 
+                //n == number to operate on
+                //p == number of values we want after the decimal point
+                const limitPrecision = (n,p) => (0|n*10**p)/10**p;
+
+                //run calculate through limitPrecision function and append to main display
+                mainDisplay.textContent = limitPrecision(calculate, 4);
             }
 
             //clear function (DEL)
