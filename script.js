@@ -1,3 +1,4 @@
+
 /*----------------*/
 //math functions
 /*----------------*/
@@ -18,13 +19,13 @@ function multi(a, b) {
 }
 
 /*---------------------*/
-//operations object
+//operations variables
 /*---------------------*/
-const updateDisplay = {
-    firstNumber: '',
-    secondNumber: '',
-    operator: '',
-};
+
+let firstNumber = '';
+let secondNumber = '';
+let operator = '';
+
 
 /*--------------------*/
 //calculate variable
@@ -45,15 +46,16 @@ function operate(a, operator, b) {
     if (operator === '/') {
         return a / b;
     }
+
 }
 
 /*----------------------------------------------*/
 //show equation expression in secondary display
 /*----------------------------------------------*/
-function evaluateEquation() {
+function evalExpression() {
     const keys = document.getElementsByTagName('button');
-    const display = document.querySelector('.secondary-display');
-    const mainDisplay = document.querySelector('.main-display');
+    let display = document.querySelector('.secondary-display');
+    let mainDisplay = document.querySelector('.display');
 
     Array.from(keys).forEach(key => {
         key.addEventListener('click', (e) => {
@@ -61,69 +63,54 @@ function evaluateEquation() {
 
             //get and display first operand value
             if (key.classList.contains('number') &&
-                updateDisplay.operator === '') {
+                operator === '') {
 
-                updateDisplay.firstNumber += value;
-                display.textContent = updateDisplay.firstNumber;
+                firstNumber += value;
+                display.textContent = firstNumber;
+                console.log(display.textContent);
             }
 
-            //get and append operator to firstnumber
-            if (isNaN(updateDisplay.firstNumber) === false &&
-                key.classList.contains('operator') &&
-                updateDisplay.operator === '') {
+            //get and append operator 
+            if (firstNumber !== '' &&
+                secondNumber === '' &&
+                operator === '' &&
+                key.classList.contains('operator')
+            ) {
 
-                updateDisplay.operator = value;
-                display.textContent += updateDisplay.operator;
+                operator = value;
+                display.textContent += ' ' + operator + ' ';
+                console.log(display.textContent);
             }
 
             //get and append second operand value
-            if (isNaN(updateDisplay.firstNumber) === false &&
-                key.classList.contains('operator') === false &&
-                updateDisplay.operator !== '') {
+            if (firstNumber !=='' &&
+                key.classList.contains('number') &&
+                operator !== '') {
 
-                updateDisplay.secondNumber = value;
-                display.textContent += updateDisplay.secondNumber;
+                secondNumber += value;
+                display.textContent = firstNumber + ' ' + operator + ' ' + secondNumber;
+                console.log(display.textContent);
             }
 
-            //run operate function on input values
-            //append to main display
-            if (value === '=' &&
-                isNaN(updateDisplay.firstNumber) === false &&
-                isNaN(updateDisplay.secondNumber) === false &&
-                updateDisplay.operator !== '') {
-                    display.textContent += '=';
-
-                mainDisplay.textContent = operate(updateDisplay.firstNumber,
-                    updateDisplay.operator, updateDisplay.secondNumber);
-
+            //run operate/calculate function on input values
+            if (value === '=') {
+                display.textContent = firstNumber + ' ' + operator + ' ' + secondNumber + ' =';
+                console.log(display.textContent);
+                mainDisplay.textContent = parseFloat(operate(Number(firstNumber),
+                    operator, Number(secondNumber)));
             }
 
-            //hook up delete button
-            //clear and reset all
-                if(value === 'del'){
-                    updateDisplay.firstNumber = '';
-                    updateDisplay.secondNumber = '';
-                    updateDisplay.operator = '';
-    
-                    display.textContent = 0;
-                    mainDisplay.textContent = '';
-                }
-           
-
-            //evaluate only two operands at a time
-            if(isNaN(mainDisplay.textContent) === false &&
-               key.classList.contains('operater')){
-                
-                updateDisplay.firstNumber = mainDisplay.textContent;
-                console.log(updateDisplay.firstNumber);
-                updateDisplay.operator = value;
-
-                display.textContent = updateDisplay.firstNumber;
-                display.textContent += updateDisplay.operator;
+            //clear function
+            if (value === 'del') {
+                firstNumber = '';
+                secondNumber = '';
+                operator = '';
+                display.textContent = '0';
+                mainDisplay.textContent = '';            
             }
 
         });
     });
 }
-evaluateEquation();
 
+evalExpression();
