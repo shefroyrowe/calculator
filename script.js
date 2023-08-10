@@ -96,7 +96,8 @@ function evalExpression() {
             //or without decimal point included
             if (value === '.' &&
                 operator !== '' &&
-                secondNumber.includes('.') === false ||
+                secondNumber.includes('.') === false &&
+                mainDisplay.textContent === '' ||
                 key.classList.contains('number') &&
                 operator !== '' &&
                 mainDisplay.textContent === '') {
