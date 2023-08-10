@@ -98,7 +98,8 @@ function evalExpression() {
                 operator !== '' &&
                 secondNumber.includes('.') === false ||
                 key.classList.contains('number') &&
-                operator !== '') {
+                operator !== '' &&
+                mainDisplay.textContent === '') {
 
                 //limit operand length to 7 characters   
                 if (secondNumber.length < 7) {

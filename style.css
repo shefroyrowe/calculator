@@ -52,17 +52,18 @@ body {
     height: 5rem;
     width: 20rem;
     overflow: hidden;
-    color: rgb(126, 53, 27);
 }
 
 .secondary-display {
     font-size: 18px;
     padding: 0.3rem;
-    color: #313838;
+    color: black;
 }
 
 .display {
     margin-top: 0.6rem;
+    font-weight: bold;
+    color: #bb0a1e;
 }
 
 
