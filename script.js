@@ -65,7 +65,7 @@ function evalExpression() {
 
             //get and display first operand value with
             //or without decimal point included
-            if (value === '.' && 
+            if (value === '.' &&
                 firstNumber.includes('.') === false &&
                 operator === '' ||
                 key.classList.contains('number') &&
@@ -131,6 +131,30 @@ function evalExpression() {
                 mainDisplay.textContent = limitPrecision(calculate, 4);
             }
 
+            //use result stored in main display in another equation
+            //if an operator is pressed while an equations result is being displayed
+            if (mainDisplay.textContent !== '' &&
+                key.classList.contains('operator') &&
+                value !== '='
+            ) {
+                //set first operand to the resulting value 
+                //being shown in the main display
+                firstNumber = mainDisplay.textContent;
+
+                //set the operator variable to the value f the button
+                //that was clicked
+                operator = value;
+
+                //populate secondary display with new first operand 
+                //value and the new operator value
+                display.textContent = firstNumber + ' ' + operator + ' ';
+
+                //empty the second operand variable so the it can store a new number value 
+                secondNumber = '';
+                //clear main display area to make way for a new result
+                mainDisplay.textContent = '';
+            }
+
             //clear function (DEL)
             if (value === 'del') {
                 firstNumber = '';
@@ -145,4 +169,3 @@ function evalExpression() {
 }
 
 evalExpression();
-//handle chained expressions, eval only two operands at a time
